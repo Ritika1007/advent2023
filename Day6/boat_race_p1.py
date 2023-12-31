@@ -29,8 +29,8 @@ time button presssed  speed*remaining_time  distance_covered
 with open('testcase.txt')  as file:
     data  = file.readlines()
 
-time = data[0].split(':')[1].strip().replace('  ','_').replace(' ','').split('_')
-distance = data[1].split(':')[1].strip().replace('  ','_').replace(' ','').split('_')
+time = data[0].split(':')[1].strip().split(' ')
+distance = data[1].split(':')[1].strip().split(' ')
 
 print(time,distance)
 
