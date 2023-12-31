@@ -45,6 +45,7 @@ for i in range(len(time)):
 
 prod = 1
 
+
 for key in dict_map.keys():
     time, distance_needed  = key, dict_map[key]
     hash_map = set()
@@ -52,16 +53,10 @@ for key in dict_map.keys():
 
     for i in range(1,time):
         distance_covered = i * (time-i)
-        if distance_covered > distance_needed: #and distance_covered not in hash_map:
-            res.append(i)
-        hash_map.add(distance_covered)
-    
-    tmp = len(res)
-    # print(hash_map)
-    # print(res)
-
-    # ways = tmp*2 if tmp % 2 == 0 else (tmp*2)-1
-    # print(ways)
-    prod = prod * tmp
+        if distance_covered > distance_needed:
+            ways = ((time-i) -i) +1
+            break
+    prod = prod * ways
+   
 
 print(prod)
