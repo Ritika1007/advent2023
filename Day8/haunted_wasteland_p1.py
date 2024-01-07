@@ -1,7 +1,6 @@
-import ast
+import re 
 
-
-move = "LRLRRRLRRLRLRRRLRRLLRRRLRLRLRLRRLRRRLRRLLRLRLRRRLRLLRRLRRLRLLRRLLRRLRRRLLRRLRRLRRRLRRRLRRRLRLRRLRRRLLRRLRRLRRRLRLRRRLRRLRRRLRRRLRLRLRLRLRLRLLRRLLLLRLRRRLRRRLLRRLRLRLLRRRLRLRRLRRRLLLLRRRLLRRLRRLRRLLRLLLLRLRRRLRLRRLRRLLRRRLRRLRLRRLRRRLLRRRLLRLRRLRRLLRRRLLRLRRLRLRRLLLRRRR"
+move = "RL"
 move_low, move_high = 0, len(move)
 
 source = 'AAA'
@@ -13,13 +12,15 @@ with open('testcase.txt') as file:
     data = file.readlines()
 
     for line in data:
-        line = line.strip().replace('(','').replace(')','')
-        source_map, dest_to_be = line.split(' = ')
-        dest_to_be =  dest_to_be.strip().replace(' ', '').split(',')
+        # line = line.strip().replace('(','').replace(')','')
+        # source_map, dest_to_be = line.split(' = ')
+        # dest_to_be =  dest_to_be.strip().replace(' ', '').split(',')
 
-        map_dict[source_map] = dest_to_be
+        source_map, left, right = re.search("(...) = \((...), (...)\)", line).groups(0)
 
-#print(map_dict)
+        map_dict[source_map] = [left,right]
+
+print(map_dict)
 
 dest = ''
 
